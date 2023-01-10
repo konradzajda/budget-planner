@@ -3,7 +3,18 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
+        
+        <RootNamespace>Tivix.BudgetPlanner.Application</RootNamespace>
         <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="$(Configuration) == 'Release'">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <SelfContained>true</SelfContained>
+
+        <RuntimeIdentifier>alpine-x64</RuntimeIdentifier>
     </PropertyGroup>
 
 </Project>
