@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+        <RootNamespace>Tivix.BudgetPlanner.Api</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

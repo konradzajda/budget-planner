@@ -3,13 +3,33 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
+        
+        <RootNamespace>Tivix.BudgetPlanner.Api</RootNamespace>
+        <AssemblyName>tivix_api</AssemblyName>
+        <OutputType>Exe</OutputType>
+        <LangVersion>11</LangVersion>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="$(Configuration) == 'Release'">
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
+        <SelfContained>true</SelfContained>
+        
+        <RuntimeIdentifier>alpine-x64</RuntimeIdentifier>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\Dockerfile">
+        <Link>Dockerfile</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
