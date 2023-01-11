@@ -1,4 +1,4 @@
-namespace Infrastructure._Tests;
+namespace Tivix.BudgetPlanner.Infrastructure;
 
 public class UnitTest1
 {

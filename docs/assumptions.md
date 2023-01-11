@@ -5,3 +5,5 @@
 - I disabled implicit usings, because .NET 7 SDK is not fully supported yet in Jetbrains Rider
 - `/build.cmd` is just for quick reloading local instance of the service
 - No CORS has been configured
+- Code Coverage is not high as I intended to only show testing competences in different scenarios. Most of the code can actually lack of proper testing.
+- Implemented with simple clean architecture with mapping between infrastructure and application layer
