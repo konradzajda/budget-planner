@@ -1,23 +1,31 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tivix.BudgetPlanner.Application;
+using Tivix.BudgetPlanner.Infrastructure;
 
 namespace Tivix.BudgetPlanner.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-            
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            builder.Services.AddApi();
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure(configuration);
 
             var app = builder.Build();
 
-
+            await app.RunDatabaseMigrationsAsync();
+            
             app.UseSwagger();
             app.UseSwaggerUI();
 
@@ -25,7 +33,7 @@ namespace Tivix.BudgetPlanner.Api
 
             app.MapControllers();
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }
