@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 using Tivix.BudgetPlanner.Application.Abstractions;
 
 namespace Tivix.BudgetPlanner.Application.Entities;

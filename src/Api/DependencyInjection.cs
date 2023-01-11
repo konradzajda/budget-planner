@@ -1,5 +1,4 @@
-﻿using FluentValidation.AspNetCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Tivix.BudgetPlanner.Api.Extensions;
 
 namespace Tivix.BudgetPlanner.Api;
