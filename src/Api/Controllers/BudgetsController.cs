@@ -57,6 +57,7 @@ public class BudgetsController : ControllerBase
 
         if (response.Success)
         {
+            // Make sure "Location" header is added to the response
             return CreatedAtAction("get-budget-by-id", new
                 {
                     id = response.Resource?.Id,

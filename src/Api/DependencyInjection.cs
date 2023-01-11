@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 using Tivix.BudgetPlanner.Api.Extensions;
 
 namespace Tivix.BudgetPlanner.Api;
@@ -12,5 +13,7 @@ public static class DependencyInjection
             
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        
+        services.AddModelValidation();
     }
 }

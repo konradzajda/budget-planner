@@ -12,8 +12,8 @@ public class BudgetEntity : ITrackable
     // As it's somehow finance application, unique identifier of budget is not numeric
     // To secure API from exposing ids by iteration
     public Guid Id { get; set; }
-    
-    public string Name { get; set; }
+
+    public string Name { get; set; } = string.Empty;
     
     public DateTime CreatedAtUtc { get; set; }
 

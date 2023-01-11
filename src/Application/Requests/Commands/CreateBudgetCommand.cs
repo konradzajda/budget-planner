@@ -6,5 +6,5 @@ namespace Tivix.BudgetPlanner.Application.Requests.Commands;
 
 public class CreateBudgetCommand : IRequest<IApplicationResponse<BudgetViewModel>>
 {
-    public string Name { get; init; }
+    public string Name { get; init; } = string.Empty;
 }
