@@ -1,4 +1,4 @@
-namespace Application.Tests;
+namespace Tivix.BudgetPlanner.Application;
 
 public class UnitTest1
 {
