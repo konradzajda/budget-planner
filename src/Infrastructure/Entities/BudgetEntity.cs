@@ -1,8 +1,10 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Tivix.BudgetPlanner.Infrastructure.Abstractions;
 
 namespace Tivix.BudgetPlanner.Infrastructure.Entities;
 
+[Table("Budgets")]
 public class BudgetEntity : ITrackable
 {
     public Guid Id { get; set; }

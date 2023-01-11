@@ -7,7 +7,7 @@ namespace Tivix.BudgetPlanner.Api.Extensions;
 
 public static class BudgetsContextServiceCollectionExtensions
 {
-    private const string BudgetContextConnectionStringKey = "MsSql";
+    private const string BudgetContextConnectionStringKey = "Postgres";
     
     public static void AddBudgetsContext(this IServiceCollection services, IConfiguration configuration)
     {
@@ -15,7 +15,10 @@ public static class BudgetsContextServiceCollectionExtensions
 
         services.AddDbContext<BudgetsContext>(y =>
         {
-            y.UseSqlServer(connectionString, sql => sql.MigrationsAssembly("tivix_api"));
+            y.UseNpgsql(connectionString, postgres =>
+            {
+                postgres.MigrationsAssembly("tivix_api");
+            });
         });
     }
 }

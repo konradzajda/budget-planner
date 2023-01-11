@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,16 @@ internal static class WebApplicationMigrationsExtensions
 {
     internal static async Task RunDatabaseMigrationsAsync(this WebApplication app)
     {
-        await using var context = app.Services.GetRequiredService<BudgetsContext>();
-
-        if (!context.Database.IsSqlServer())
+        using var scope = app.Services.GetRequiredService<IServiceScopeFactory>()
+            .CreateScope();
+        await using var context = scope.ServiceProvider.GetRequiredService<BudgetsContext>();
+        
+        if (!context.Database.IsNpgsql())
             throw new InvalidOperationException("Only SQL server is supported for now. Using No SQL would be too easy.");
 
-        await context.Database.EnsureCreatedAsync();
-        await context.Database.MigrateAsync();
+        var pendingMigrations = await context.Database.GetPendingMigrationsAsync();
+        
+        if (pendingMigrations.Any())
+            await context.Database.MigrateAsync();
     }
 }

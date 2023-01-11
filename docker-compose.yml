@@ -5,16 +5,14 @@ services:
     build:
       context: .
     ports:
-      - "8080:80"
+      - '8080:80'
     depends_on:
-      - mssql
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+      - postgres
+  postgres:
+    image: postgres:15.1-alpine
     environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: very_s3cure_p@ssw0rd!
-    volumes:
-      - './drive:/var/opt/mssql'
+      POSTGRES_PASSWORD: 'very_s3cure_p@ssw0rd!'
+      POSTGRES_USER: 'coolkid'
     ports:
-      - '1433:1433'
+      - '5432:5432'
     restart: always
