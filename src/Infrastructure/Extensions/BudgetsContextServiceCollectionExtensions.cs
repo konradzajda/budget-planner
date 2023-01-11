@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tivix.BudgetPlanner.Infrastructure;
+using Tivix.BudgetPlanner.Application.Abstractions;
 
-namespace Tivix.BudgetPlanner.Api.Extensions;
+namespace Tivix.BudgetPlanner.Infrastructure.Extensions;
 
 public static class BudgetsContextServiceCollectionExtensions
 {
@@ -13,7 +13,7 @@ public static class BudgetsContextServiceCollectionExtensions
     {
         var connectionString = configuration.GetConnectionString(BudgetContextConnectionStringKey);
 
-        services.AddDbContext<BudgetsContext>(y =>
+        services.AddDbContext<IBudgetsContext, BudgetsContext>(y =>
         {
             y.UseNpgsql(connectionString, postgres =>
             {

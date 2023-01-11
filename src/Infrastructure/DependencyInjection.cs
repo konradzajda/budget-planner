@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tivix.BudgetPlanner.Api.Extensions;
+using Tivix.BudgetPlanner.Infrastructure.Extensions;
 
 namespace Tivix.BudgetPlanner.Infrastructure;
 

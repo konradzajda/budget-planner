@@ -18,12 +18,19 @@ public class BudgetsController : ControllerBase
         _mediator = mediator;
     }
 
+    /// <summary>
+    /// Gets single budget by its' unique identifier.
+    /// </summary>
+    /// <param name="id">Unique identifier of the budget.</param>
+    /// <param name="cancellationToken">A cancellation token used for cancelling asynchronous operations.</param>
+    /// <returns></returns>
+    [ProducesResponseType(200)]
+    [ProducesResponseType(404)]
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         var request = new GetBudgetByIdQuery
         {
-
             Id = id,
         };
 

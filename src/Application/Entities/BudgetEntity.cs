@@ -1,12 +1,16 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Tivix.BudgetPlanner.Infrastructure.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using Tivix.BudgetPlanner.Application.Abstractions;
 
-namespace Tivix.BudgetPlanner.Infrastructure.Entities;
+namespace Tivix.BudgetPlanner.Application.Entities;
 
 [Table("Budgets")]
 public class BudgetEntity : ITrackable
 {
+
+    // As it's somehow finance application, unique identifier of budget is not numeric
+    // To secure API from exposing ids by iteration
     public Guid Id { get; set; }
     
     public DateTime CreatedAtUtc { get; set; }
