@@ -1,32 +1,40 @@
-﻿using System.Linq;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Tivix.BudgetPlanner.Application.Abstractions;
 using Tivix.BudgetPlanner.Application.Queries;
-using Tivix.BudgetPlanner.Infrastructure;
+using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Application.Handlers.Queries;
 
 public class GetBudgetByIdQueryHandler : IRequestHandler<GetBudgetByIdQuery, IApplicationResponse<BudgetViewModel>>
 {
     private readonly IBudgetsContext _context;
+    private readonly IMapper _mapper;
 
-    public GetBudgetByIdQueryHandler(IBudgetsContext context)
+    public GetBudgetByIdQueryHandler(IBudgetsContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
     
-    public Task<IApplicationResponse<BudgetViewModel>> Handle(GetBudgetByIdQuery request, CancellationToken cancellationToken)
+    public async Task<IApplicationResponse<BudgetViewModel>> Handle(GetBudgetByIdQuery request, CancellationToken cancellationToken)
     {
-        var budget = _context.Budgets
+        if (request.Id == Guid.Empty)
+            return ApplicationResponse.NotFound<BudgetViewModel>();
+        
+        var budget = await _context.Budgets
+            .ProjectTo<BudgetViewModel>(_mapper.ConfigurationProvider)
             .AsNoTracking()
-            .SingleOrDefault(y => y.Id == request.Id);
+            .SingleOrDefaultAsync(y => y.Id == request.Id, cancellationToken);
 
         if (budget == null)
-            return Task.FromResult(ApplicationResponse.NotFound<BudgetViewModel>());
+            return ApplicationResponse.NotFound<BudgetViewModel>();
 
-        return Task.FromResult(ApplicationResponse.Success(new BudgetViewModel()));
+        return ApplicationResponse.Success(budget);
     }
 }

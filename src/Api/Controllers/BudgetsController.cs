@@ -23,7 +23,6 @@ public class BudgetsController : ControllerBase
     {
         var request = new GetBudgetByIdQuery
         {
-
             Id = id,
         };
 

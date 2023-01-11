@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using Tivix.BudgetPlanner.Infrastructure.Entities;
+using Microsoft.EntityFrameworkCore;
+using Tivix.BudgetPlanner.Application.Entities;
 
 namespace Tivix.BudgetPlanner.Application.Abstractions;
 
@@ -13,7 +13,7 @@ public interface IBudgetsContext
     /// <summary>
     /// Gets budgets.
     /// </summary>
-    IQueryable<BudgetEntity> Budgets { get; }
+    DbSet<BudgetEntity> Budgets { get; }
 
     /// <summary>
     /// Saves changes applied to the context.

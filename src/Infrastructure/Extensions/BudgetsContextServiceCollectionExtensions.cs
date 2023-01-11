@@ -2,9 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Infrastructure;
 
-namespace Tivix.BudgetPlanner.Api.Extensions;
+namespace Tivix.BudgetPlanner.Infrastructure.Extensions;
 
 public static class BudgetsContextServiceCollectionExtensions
 {

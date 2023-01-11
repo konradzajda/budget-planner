@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Tivix.BudgetPlanner.Infrastructure.Abstractions;
+using Tivix.BudgetPlanner.Application.Abstractions;
 
-namespace Tivix.BudgetPlanner.Infrastructure.Entities;
+namespace Tivix.BudgetPlanner.Application.Entities;
 
 [Table("Budgets")]
 public class BudgetEntity : ITrackable

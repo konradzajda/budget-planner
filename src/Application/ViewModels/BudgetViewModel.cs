@@ -1,9 +1,12 @@
 ﻿using System;
+using Tivix.BudgetPlanner.Application.Abstractions;
 
-namespace Tivix.BudgetPlanner.Application.Abstractions;
+namespace Tivix.BudgetPlanner.Application.ViewModels;
 
-public interface ITrackable
+public class BudgetViewModel : ITrackable
 {
+    public Guid Id { get; set; }
+    
     public DateTime CreatedAtUtc { get; set; }
     
     public string CreatedBy { get; set; }
