@@ -7,6 +7,8 @@ public class BudgetViewModel : ITrackable
 {
     public Guid Id { get; set; }
     
+    public string Name { get; set; }
+
     public DateTime CreatedAtUtc { get; set; }
     
     public string CreatedBy { get; set; }

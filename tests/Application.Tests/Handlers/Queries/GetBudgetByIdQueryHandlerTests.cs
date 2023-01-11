@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using NSubstitute;
-using Tivix.BudgetPlanner.Application.Abstractions;
 using Tivix.BudgetPlanner.Application.Entities;
 using Tivix.BudgetPlanner.Application.Internal;
-using Tivix.BudgetPlanner.Application.Queries;
-using Tivix.BudgetPlanner.Infrastructure;
+using Tivix.BudgetPlanner.Application.Requests.Queries;
 using Xunit;
 
 namespace Tivix.BudgetPlanner.Application.Handlers.Queries;

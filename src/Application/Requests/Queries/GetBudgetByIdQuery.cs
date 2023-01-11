@@ -3,7 +3,7 @@ using MediatR;
 using Tivix.BudgetPlanner.Application.Abstractions;
 using Tivix.BudgetPlanner.Application.ViewModels;
 
-namespace Tivix.BudgetPlanner.Application.Queries;
+namespace Tivix.BudgetPlanner.Application.Requests.Queries;
 
 public class GetBudgetByIdQuery : IRequest<IApplicationResponse<BudgetViewModel>>
 {
