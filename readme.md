@@ -10,7 +10,8 @@
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker-Compose](https://docs.docker.com/compose/install/)
 - Cup of good coffee or favorite tea
-- If you don't want to use docker for local deployment, and you rather use some IDE, make sure you have dotnet sdk (v7) installed. 
+- If you don't want to use docker for local deployment, and you rather use some IDE, make sure you have dotnet sdk (v7) installed.
+  - Running this application outside the docker requires to update connection string in `appsettings.json`. Change host from `postgres` to `localhost` if you are running it outside the docker.
 
 ## Description
 - Technologies used: 
