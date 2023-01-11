@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Application.Queries;
+using Tivix.BudgetPlanner.Application.Requests.Queries;
 using Tivix.BudgetPlanner.Application.ViewModels;
 using Xunit;
 

@@ -6,7 +6,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Application.Queries;
+using Tivix.BudgetPlanner.Application.Requests.Queries;
 using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Application.Handlers.Queries;

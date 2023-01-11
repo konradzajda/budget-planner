@@ -3,7 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tivix.BudgetPlanner.Application.Queries;
+using Tivix.BudgetPlanner.Application.Requests.Commands;
+using Tivix.BudgetPlanner.Application.Requests.Queries;
 
 namespace Tivix.BudgetPlanner.Api.Controllers;
 
@@ -27,6 +28,7 @@ public class BudgetsController : ControllerBase
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
     [HttpGet("{id:guid}")]
+    [ActionName("get-budget-by-id")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         var request = new GetBudgetByIdQuery
@@ -42,5 +44,27 @@ public class BudgetsController : ControllerBase
         }
 
         return NotFound();
+    }
+
+    [ProducesResponseType(201)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(500)]
+    [HttpPost]
+    public async Task<IActionResult> CreateBudgetAsync([FromBody] CreateBudgetCommand command,
+        CancellationToken cancellationToken = default)
+    {
+        var response = await _mediator.Send(command, cancellationToken);
+
+        if (response.Success)
+        {
+            // Make sure "Location" header is added to the response
+            return CreatedAtAction("get-budget-by-id", new
+                {
+                    id = response.Resource?.Id,
+                },
+                response.Resource);
+        }
+
+        return StatusCode((int)response.StatusCode, response.Errors);
     }
 }
