@@ -8,6 +8,9 @@ services:
       - '8080:80'
     depends_on:
       - postgres
+# Uncomment to have some data on start
+    environment:
+       ASPNETCORE_SEED_BUDGETS: 'TRUE'
   postgres:
     image: postgres:15.1-alpine
     environment:

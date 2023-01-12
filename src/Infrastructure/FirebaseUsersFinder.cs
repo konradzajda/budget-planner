@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using FirebaseAdmin.Auth;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Application.Handlers.Commands;
 using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Infrastructure;

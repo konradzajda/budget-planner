@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Application.Entities;
 
 namespace Tivix.BudgetPlanner.Application.ViewModels;
 

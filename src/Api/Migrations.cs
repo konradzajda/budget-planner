@@ -17,6 +17,7 @@ internal static class WebApplicationMigrationsExtensions
     {
         using var scope = app.Services.GetRequiredService<IServiceScopeFactory>()
             .CreateScope();
+
         await using var context = scope.ServiceProvider.GetRequiredService<BudgetsContext>();
         
         if (!context.Database.IsNpgsql())
