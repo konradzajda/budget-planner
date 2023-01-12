@@ -21,13 +21,15 @@ public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeComm
     private readonly IBudgetsContext _context;
     private readonly IUserContextAccessor _contextAccessor;
     private readonly ILogger<AddBudgetIncomeCommandHandler> _logger;
+    private readonly IBudgetGuard _guard;
     private readonly IMapper _mapper;
 
-    public AddBudgetIncomeCommandHandler(IBudgetsContext context, IUserContextAccessor contextAccessor, ILogger<AddBudgetIncomeCommandHandler> logger, IMapper mapper)
+    public AddBudgetIncomeCommandHandler(IBudgetsContext context, IUserContextAccessor contextAccessor, ILogger<AddBudgetIncomeCommandHandler> logger, IBudgetGuard guard, IMapper mapper)
     {
         _context = context;
         _contextAccessor = contextAccessor;
         _logger = logger;
+        _guard = guard;
         _mapper = mapper;
     }
 
@@ -45,6 +47,8 @@ public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeComm
         if (budget == null)
             return ApplicationResponse.NotFound<IEnumerable<BudgetIncomeViewModel>>();
 
+        _guard.CanAddIncome(budget);
+        
         var income = new BudgetIncomeEntity
         {
             Title = request.Title,

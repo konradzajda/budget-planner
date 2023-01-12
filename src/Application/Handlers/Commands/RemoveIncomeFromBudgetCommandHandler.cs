@@ -19,12 +19,14 @@ public class RemoveIncomeFromBudgetCommandHandler : IRequestHandler<RemoveIncome
     private readonly IBudgetsContext _context;
     private readonly IMapper _mapper;
     private readonly ILogger<RemoveIncomeFromBudgetCommandHandler> _logger;
+    private readonly IBudgetGuard _guard;
 
-    public RemoveIncomeFromBudgetCommandHandler(IBudgetsContext context, IMapper mapper, ILogger<RemoveIncomeFromBudgetCommandHandler> logger)
+    public RemoveIncomeFromBudgetCommandHandler(IBudgetsContext context, IMapper mapper, ILogger<RemoveIncomeFromBudgetCommandHandler> logger, IBudgetGuard guard)
     {
         _context = context;
         _mapper = mapper;
         _logger = logger;
+        _guard = guard;
     }
 
     public async Task<IApplicationResponse<Unit>> Handle(RemoveIncomeFromBudgetCommand request, CancellationToken cancellationToken)
@@ -44,6 +46,8 @@ public class RemoveIncomeFromBudgetCommandHandler : IRequestHandler<RemoveIncome
         if (incomeToRemove == null)
             return ApplicationResponse.Success(Unit.Value);
 
+        _guard.CanRemoveIncome(incomeToRemove);
+        
         budget.Incomes.Remove(incomeToRemove);
 
         try

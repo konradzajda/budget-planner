@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Tivix.BudgetPlanner.Api.ExceptionHandling;
 using Tivix.BudgetPlanner.Application.Requests.Commands;
 using Tivix.BudgetPlanner.Application.Requests.Queries;
 using Tivix.BudgetPlanner.Application.ViewModels;
@@ -14,6 +15,7 @@ namespace Tivix.BudgetPlanner.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/budgets")]
+[TypeFilter(typeof(ForbiddenExceptionFilter))]
 public class BudgetsController : ControllerBase
 {
     private readonly IMediator _mediator;
