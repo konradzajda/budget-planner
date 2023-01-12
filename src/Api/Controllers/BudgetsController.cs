@@ -2,12 +2,14 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tivix.BudgetPlanner.Application.Requests.Commands;
 using Tivix.BudgetPlanner.Application.Requests.Queries;
 
 namespace Tivix.BudgetPlanner.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/budgets")]
 public class BudgetsController : ControllerBase

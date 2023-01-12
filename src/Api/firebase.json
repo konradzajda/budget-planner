@@ -1,0 +1,9 @@
+﻿{
+    "Firebase": {
+        "ProjectId": "tivix-budget-app-kz",
+        "AuthenticateEndpoint": "https://accounts.google.com/o/oauth2/auth",
+        "TokenEndpoint": "https://oauth2.googleapis.com/token",
+        "OAuthClientId": "186112623-s2r5oqr62aknrfrbnjr45rj594v900dt.apps.googleusercontent.com",
+        "OAuthClientSecret": "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"
+    }
+}

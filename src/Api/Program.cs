@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
+using Tivix.BudgetPlanner.Api.Extensions;
 using Tivix.BudgetPlanner.Application;
 using Tivix.BudgetPlanner.Infrastructure;
 
@@ -14,9 +15,10 @@ namespace Tivix.BudgetPlanner.Api
 
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
+                .AddJsonFile("firebase.json")
                 .Build();
 
-            builder.Services.AddApi();
+            builder.Services.AddApi(configuration);
             builder.Services.AddApplication();
             builder.Services.AddInfrastructure(configuration);
 
@@ -24,9 +26,15 @@ namespace Tivix.BudgetPlanner.Api
 
             await app.RunDatabaseMigrationsAsync();
             
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
+            app.UseSwagger()
+                .UseSwaggerUI(options =>
+                {
+                    options.OAuthClientId(configuration.GetOAuthClientId());
+                    options.OAuthClientSecret(configuration.GetOAuthClientSecret());
+                    options.OAuthUsePkce();
+                });
+            
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
