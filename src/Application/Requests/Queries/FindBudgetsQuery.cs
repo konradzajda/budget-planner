@@ -4,7 +4,7 @@ using MediatR;
 using Tivix.BudgetPlanner.Application.Abstractions;
 using Tivix.BudgetPlanner.Application.ViewModels;
 
-namespace Tivix.BudgetPlanner.Api.Controllers;
+namespace Tivix.BudgetPlanner.Application.Requests.Queries;
 
 public class FindBudgetsQuery : IRequest<IApplicationResponse<IEnumerable<BudgetViewModel>>>
 {

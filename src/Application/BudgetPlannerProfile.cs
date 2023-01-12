@@ -10,5 +10,7 @@ public class BudgetPlannerProfile : Profile
     {
         CreateProjection<BudgetEntity, BudgetViewModel>();
         CreateMap<BudgetEntity, BudgetViewModel>();
+
+        CreateMap<BudgetIncomeEntity, BudgetIncomeViewModel>();
     }
 }

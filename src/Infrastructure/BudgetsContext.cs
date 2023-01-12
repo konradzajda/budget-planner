@@ -29,6 +29,15 @@ public class BudgetsContext : DbContext, IBudgetsContext
         modelBuilder.Entity<BudgetEntity>()
             .HasMany(y => y.Users)
             .WithMany(y => y.Budgets);
+
+        modelBuilder.Entity<BudgetUserEntity>()
+            .HasKey(y => y.Id);
+
+        modelBuilder.Entity<BudgetIncomeEntity>()
+            .HasKey(y => y.Id);
+
+        modelBuilder.Entity<BudgetIncomeEntity>()
+            .HasIndex(y => y.CreatedAtUtc);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

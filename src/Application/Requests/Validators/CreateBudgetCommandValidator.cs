@@ -17,7 +17,7 @@ public sealed class CreateBudgetCommandValidator : AbstractValidator<CreateBudge
             .NotEmpty()
             .MinimumLength(NameMinimumLength)
             .MaximumLength(NameMaximumLength)
-            .Must(y => context.Budgets.Any(b => b.Name == y && b.CreatedBy == contextAccessor.Id))
+            .Must(y => !context.Budgets.Any(b => b.Name == y && b.CreatedBy == contextAccessor.Id))
             .WithMessage("Name must be unique");
 
     }

@@ -24,11 +24,5 @@ public class BudgetEntity : ITrackable
     public string LastUpdatedBy { get; set; } = string.Empty;
 
     public virtual List<BudgetUserEntity> Users { get; set; } = new();
-}
-
-public class BudgetUserEntity
-{
-    public string Id { get; set; }
-    
-    public virtual List<BudgetEntity> Budgets { get; set; }
+    public virtual List<BudgetIncomeEntity> Incomes { get; set; } = new();
 }

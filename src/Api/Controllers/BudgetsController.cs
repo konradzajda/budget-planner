@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Tivix.BudgetPlanner.Api.ExceptionHandling;
 using Tivix.BudgetPlanner.Application.Requests.Commands;
 using Tivix.BudgetPlanner.Application.Requests.Queries;
 using Tivix.BudgetPlanner.Application.ViewModels;
@@ -14,6 +15,7 @@ namespace Tivix.BudgetPlanner.Api.Controllers;
 [Authorize]
 [ApiController]
 [Route("api/budgets")]
+[TypeFilter(typeof(ForbiddenExceptionFilter))]
 public class BudgetsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -128,6 +130,48 @@ public class BudgetsController : ControllerBase
             {
                 id
             }, response.Resource);
+        }
+
+        return StatusCode((int)response.StatusCode, response.Errors);
+    }
+
+    [HttpPost("{id:guid}/incomes")]
+    [ProducesResponseType(typeof(IEnumerable<BudgetIncomeViewModel>), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> AddIncomeToBudgetAsync(
+        [FromRoute] Guid id,
+        [FromBody] AddBudgetIncomeCommand command,
+        CancellationToken cancellationToken = default)
+    {
+        command.BudgetId = id;
+
+        var response = await _mediator.Send(command, cancellationToken);
+
+        if (response.Success)
+        {
+            return Ok(response.Resource);
+        }
+
+        return StatusCode((int)response.StatusCode, response.Errors);
+    }
+
+    [HttpDelete("{budgetId:guid}/incomes/{incomeId:int}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> RemoveIncomeFromBudgetAsync(
+        [FromRoute] Guid budgetId, [FromRoute] int incomeId, CancellationToken cancellationToken = default)
+    {
+        var request = new RemoveIncomeFromBudgetCommand
+        {
+            BudgetId = budgetId,
+            IncomeId = incomeId,
+        };
+
+        var response = await _mediator.Send(request, cancellationToken);
+
+        if (response.Success)
+        {
+            return NoContent();
         }
 
         return StatusCode((int)response.StatusCode, response.Errors);

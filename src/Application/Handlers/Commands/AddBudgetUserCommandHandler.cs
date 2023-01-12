@@ -19,30 +19,37 @@ public class AddBudgetUserCommandHandler : IRequestHandler<AddBudgetUserCommand,
     private readonly IUserContextAccessor _contextAccessor;
     private readonly IUsersFinder _finder;
     private readonly ILogger<AddBudgetUserCommandHandler> _logger;
+    private readonly IBudgetGuard _guard;
 
     public AddBudgetUserCommandHandler(
         IBudgetsContext context,
         IUserContextAccessor contextAccessor,
         IUsersFinder finder,
-        ILogger<AddBudgetUserCommandHandler> logger)
+        ILogger<AddBudgetUserCommandHandler> logger, IBudgetGuard guard)
     {
         _context = context;
         _contextAccessor = contextAccessor;
         _finder = finder;
         _logger = logger;
+        _guard = guard;
     }
     
     public async Task<IApplicationResponse<IEnumerable<string>>> Handle(AddBudgetUserCommand request, CancellationToken cancellationToken)
     {
+        if (request.BudgetId == Guid.Empty)
+            return ApplicationResponse.NotFound<IEnumerable<string>>();
+        
         var budget = await _context.Budgets
             .SingleOrDefaultAsync(y => y.Id == request.BudgetId, cancellationToken);
 
-        if (budget == null || !string.Equals(_contextAccessor.Id, budget.CreatedBy))
+        if (budget == null)
         {
             return ApplicationResponse.FromError<IEnumerable<string>>(
                 ErrorMessages.Budget.BudgetNotFound,
                 HttpStatusCode.NotFound);
         }
+        
+        _guard.CanAddUser(budget);
 
         if (budget.Users.Any(y => y.Id == request.UserId))
         {
