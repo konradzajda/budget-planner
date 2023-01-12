@@ -9,10 +9,13 @@ COPY src/Infrastructure/Infrastructure.csproj Infrastructure/Infrastructure.cspr
 # Run dotnet restore before copying source files
 # to make sure nuget packages can be actually cached by docker
 RUN dotnet restore Api/Api.csproj
+RUN dotnet restore Application/Application.csproj
+RUN dotnet restore Infrastructure/Infrastructure.csproj
 
 COPY src .
 RUN dotnet publish ./Api/Api.csproj --output /artifacts --configuration Release
 
+# Use light-weight runtime-deps image to minimize resource usage
 FROM mcr.microsoft.com/dotnet/runtime-deps:7.0-alpine as runner
 COPY --from=builder /artifacts ./
 
