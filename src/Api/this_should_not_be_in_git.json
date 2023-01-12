@@ -1,0 +1,12 @@
+﻿{
+  "type": "service_account",
+  "project_id": "tivix-budget-app-kz",
+  "private_key_id": "6c80e2db8e426903114cd46f520b10858212de16",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCQFEfQ8qUbyGVo\n/g8PLxhrt1DSwb3lrwmyqR/njjqwwiXadnGPDSHkLcKWK7uc9uykJzidjQ3/zXNK\n0CNaQcpknl3W0t8/lpm+b7CH1WxB7tlqeG8gnRIqCrAiTysyXcFfk029bnovdeLq\nvmx1+mqbz83mHSQVKGkL1ghpDQN7QaSvwwTIinIMAb79OjeTFCKwzBfpZFg5sTO0\nPnbCRP0gn1vnEE8jetBFcKpS1Fzqi43jF114QXc1SFLP5S5QLV8BExsOvJFJOC0Y\n78Mw2f2YnIiA3PgvBB8Z482dw5s+iuIRn1/9nd4NVXo3+wgzv3AeHW1xAPsl/7+m\nzFqap0uLAgMBAAECggEAF7GWG9kDaP28G5eIL3WNvQ0Q+A/PZEm0PRLOAdzkbvQG\nmJYY168Pr0ANO3fmqwn6YYZnq5UqQ7JsLtXqsmmWWJSolu7nssPX9bbVX4kr++3F\nCFrU35alCY/nZkUBtA8yAT8uriPQaSSoU/VLzd0IEiaK1DhfmjEikUU57dirhWXH\nfcc/VPomkL3b+3gTZ/Wz6Sg1Mq7GJPklXh7fmObjW1K9W179XG8ftItgYcWRm/+p\neWXxBfEcU9OOqDU5jsFeefV35fFlYnqJNKY9EYs9CG8rfa/+UWls+WTGfszPUwgw\npO6aV26qjt5ongbl5kppzIAy+BCGOLJlmmv7kCu/jQKBgQDBjFWvu6wgEorqzFDG\nfdX0+gtpMG+nzy5gNeGLb8d7cEbDAm4imjTSOYEToVz9ZMWHPB2lsELAeMlr+u7d\ngTgJhN+UDinX2jwlLEk3vHf45U77lpFlvx+uFJzjmTNlEJ8XaNH9M7eYibRAgVFb\n+J4LjHpK88K1XOGu0HCyvVV6jQKBgQC+kajzOrNcjx94oGhw7YBPfoarNaklbiZ3\nNMUVaxAzPSohuIDzGlKXEpKuBveSaYM+mfj7wPX6ZhWXoehRl77r9zhpeqhU+/kz\nL7scHeDbyxZBOqQHXUmuJ1teRqlErzihB23bHxoc9GwvVbzOxofNdwusWLL6I2mR\n7ahqHU2kdwKBgFqskywcIRx5c2lixOjo5Qa66gOitHyKfHCIbZz0hiEXTZ9okQ5W\n7i4a0JTQwQ7ZWgzsJfuMowkmzT5wNd3B/u2+uTvUktfUHt9PaxHYkuAhFaqaNI3V\nR1M3xvR9vm03p0DBU7dqtjWZNcAOlX4f8HL6ogRhRLPQys4qStICD3y1An9uK8eA\n1m7bE+Md2Z6HqsaDLqKsWFlxSjzyrY9C0qKK/NFerUvfP1h//jzOXzjBbD5z8o/+\n+485M8tH3lJw2UmHIWV7lW27s/BdpzqFBsD4UHCNRVmO6F+wTxCDcFZrXuFeNu1L\nwK9YDfZ9ZxPAdwYLwsb83EqcUdy2gK7cqhQ5AoGAWLkvXjHr0wzxTcfPhBISS2/5\n9L1ARBFV0SXhW/jE+F52Knt+KKoPIL5/DioxGqxfJYTGMEduDc4TwjtJ/cKy9VLx\n/m+Z9hMK+ibL9TVrDnDbSGVKPDdfbH9bOyLZOr+x9ibG2F36EgjYwOpwN6zqYnCn\nLmY4l4qNbcFfyzwEW+g=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-glw0f@tivix-budget-app-kz.iam.gserviceaccount.com",
+  "client_id": "102733229380081654468",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-glw0f%40tivix-budget-app-kz.iam.gserviceaccount.com"
+}

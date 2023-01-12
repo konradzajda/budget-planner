@@ -41,7 +41,7 @@ public class BudgetsControllerTests
             .Returns(applicationResponse);
         
         // When
-        var result = await _sut.GetByIdAsync(id);
+        var result = await _sut.GetBudgetByIdAsync(id);
         
         // Then
         result.Should().BeOfType<OkObjectResult>();
@@ -63,7 +63,7 @@ public class BudgetsControllerTests
             .Returns(applicationResponse);
         
         // When
-        var result = await _sut.GetByIdAsync(id) as OkObjectResult;
+        var result = await _sut.GetBudgetByIdAsync(id) as OkObjectResult;
         
         // Then
         
@@ -88,7 +88,7 @@ public class BudgetsControllerTests
             .Returns(applicationResponse);
         
         // When
-        var result = await _sut.GetByIdAsync(id);
+        var result = await _sut.GetBudgetByIdAsync(id);
         
         // Then
         result.Should().BeOfType<NotFoundResult>();
@@ -101,7 +101,7 @@ public class BudgetsControllerTests
         var token = new CancellationToken();
         
         // When
-        var _ = await _sut.GetByIdAsync(Guid.NewGuid(), token);
+        var _ = await _sut.GetBudgetByIdAsync(Guid.NewGuid(), token);
         
         // Then
         await _mediator.Received().Send(Arg.Any<GetBudgetByIdQuery>(), token);

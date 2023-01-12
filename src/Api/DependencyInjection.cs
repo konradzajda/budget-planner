@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tivix.BudgetPlanner.Api.Extensions;
+using Tivix.BudgetPlanner.Application;
+using Tivix.BudgetPlanner.Infrastructure;
 
 namespace Tivix.BudgetPlanner.Api;
 
@@ -22,5 +24,11 @@ public static class DependencyInjection
         services.AddSwagger(configuration);
         
         services.AddModelValidation();
+        
+        services.AddAutoMapper(y =>
+        {
+            y.AddProfile<BudgetPlannerProfile>();
+            y.AddProfile<UsersProfile>();
+        });
     }
 }
