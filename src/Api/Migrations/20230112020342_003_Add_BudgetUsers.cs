@@ -12,10 +12,6 @@ namespace Tivix.BudgetPlanner.Api.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Users",
-                table: "Budgets");
-
             migrationBuilder.CreateTable(
                 name: "BudgetUserEntity",
                 columns: table => new
@@ -65,12 +61,6 @@ namespace Tivix.BudgetPlanner.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "BudgetUserEntity");
-
-            migrationBuilder.AddColumn<List<string>>(
-                name: "Users",
-                table: "Budgets",
-                type: "text[]",
-                nullable: false);
         }
     }
 }
