@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Tivix.BudgetPlanner.Infrastructure;
@@ -11,9 +12,11 @@ using Tivix.BudgetPlanner.Infrastructure;
 namespace Tivix.BudgetPlanner.Api.Migrations
 {
     [DbContext(typeof(BudgetsContext))]
-    partial class BudgetsContextModelSnapshot : ModelSnapshot
+    [Migration("20230112025626_004_Add_Budget_Income")]
+    partial class _004AddBudgetIncome
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,7 +75,7 @@ namespace Tivix.BudgetPlanner.Api.Migrations
                 {
                     b.Property<decimal>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("serial");
+                        .HasColumnType("numeric(20,0)");
 
                     b.Property<float>("Amount")
                         .HasColumnType("real");

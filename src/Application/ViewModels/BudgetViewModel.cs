@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Tivix.BudgetPlanner.Application.Abstractions;
+using Tivix.BudgetPlanner.Application.Entities;
 
 namespace Tivix.BudgetPlanner.Application.ViewModels;
 
@@ -16,4 +18,6 @@ public class BudgetViewModel : ITrackable
     public DateTime LastUpdatedAtUtc { get; set; }
 
     public string LastUpdatedBy { get; set; } = string.Empty;
+
+    public IEnumerable<BudgetIncomeViewModel> Incomes { get; set; } = Array.Empty<BudgetIncomeViewModel>();
 }

@@ -132,4 +132,24 @@ public class BudgetsController : ControllerBase
 
         return StatusCode((int)response.StatusCode, response.Errors);
     }
+
+    [HttpPost("{id:guid}/incomes")]
+    [ProducesResponseType(typeof(IEnumerable<BudgetIncomeViewModel>), 200)]
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> AddIncomeToBudgetAsync(
+        [FromRoute] Guid id,
+        [FromBody] AddBudgetIncomeCommand command,
+        CancellationToken cancellationToken = default)
+    {
+        command.BudgetId = id;
+
+        var response = await _mediator.Send(command, cancellationToken);
+
+        if (response.Success)
+        {
+            return Ok(response.Resource);
+        }
+
+        return StatusCode((int)response.StatusCode, response.Errors);
+    }
 }
