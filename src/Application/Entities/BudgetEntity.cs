@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Tivix.BudgetPlanner.Application.Abstractions;
 
@@ -21,4 +22,13 @@ public class BudgetEntity : ITrackable
     public DateTime LastUpdatedAtUtc { get; set; }
 
     public string LastUpdatedBy { get; set; } = string.Empty;
+
+    public virtual List<BudgetUserEntity> Users { get; set; } = new();
+}
+
+public class BudgetUserEntity
+{
+    public string Id { get; set; }
+    
+    public virtual List<BudgetEntity> Budgets { get; set; }
 }
