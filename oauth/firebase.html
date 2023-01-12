@@ -1,0 +1,87 @@
+<html>
+<head>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+</head>
+<body>
+
+<style>
+    body {
+        font-family: Arial;
+        background-color: #F4F4F4;
+        color: #3C3C3C;
+    }
+</style>
+
+<div style="text-align: center; margin: 4rem">
+    <h1>Hello Tivix developer!</h1>
+    <div id="success-3">
+        <h4>
+            You can sign up or sign in here. <br/> Your Bearer will be displayed at the bottom of the screen after logging in. <br/>
+        </h4>
+
+
+    Example account: <br/>
+        <span style="margin: 2rem 0; display: block">
+            <strong>User:</strong> tivix@example.com <br/>
+        </span>
+        <strong>Password:</strong> P@ssword123!
+
+    </div> <br/>
+</div>
+
+<div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+
+<div id="success" style="margin: 4rem 8rem; display: none; text-align: center">
+    <strong>Cool. Your Bearer token has been copied to the clipboard. It already includes "Bearer" before token.</strong><br/>
+    Here is the Swagger: <a href="http://localhost:8080/swagger">Click</a> <br/> <br/>
+
+    Hit F5 (or CTRL+R if you want) to get new token.
+
+    <img style="width: 60%; margin-top: 2rem" src="https://assets-global.website-files.com/5f3c19f18169b62a0d0bf387/60d33bf3a2121cc74f72a286_0AEnnZYBAYzmSXzyGaopjvEGKKO1yFqf_zMXqFTAT6vUDfXVPRifI3J8oBjZUl51PnRQqf2tqpjiRt33IKgg4sTiJi2YShGTN5iNUIoYbNj2HXobiQg4-k7yBiNT54EKOGYyZOR2.png" />
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+<script>
+
+    const firebaseConfig = {
+        projectId: 'tivix-budget-app-kz',
+        apiKey: 'AIzaSyD6MNnTitAcTYrpP-PJ3ZZrLHpwl1wOQ4E',
+        appId: '1:186112623:web:68bcadc24133867a89cb9a'
+    }
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    const auth = firebase.auth();
+    const ui = new firebaseui.auth.AuthUI(auth);
+    const uiConfig = {
+        callbacks: {
+            signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                firebase.auth().currentUser.getIdToken(true).then(function(idToken) {
+                    navigator.clipboard.writeText("Bearer " + idToken);
+                    document.getElementById("success").style.display = "block";
+                    document.getElementById("success-3").style.display = "none";
+                    document.getElementById("firebaseui-auth-container").style.display = "none";
+                }).catch(function(e) {
+                    console.warn(e);
+                })
+                return true;
+            },
+            uiShown: function() {
+                document.getElementById('loader').style.display = 'none';
+            }
+        },
+        signInFlow: 'popup',
+        signInOptions: [
+            firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
+    };
+    ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+</body>
+</html>
