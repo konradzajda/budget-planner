@@ -34,6 +34,9 @@ public class AddBudgetUserCommandHandler : IRequestHandler<AddBudgetUserCommand,
     
     public async Task<IApplicationResponse<IEnumerable<string>>> Handle(AddBudgetUserCommand request, CancellationToken cancellationToken)
     {
+        if (request.BudgetId == Guid.Empty)
+            return ApplicationResponse.NotFound<IEnumerable<string>>();
+        
         var budget = await _context.Budgets
             .SingleOrDefaultAsync(y => y.Id == request.BudgetId, cancellationToken);
 
