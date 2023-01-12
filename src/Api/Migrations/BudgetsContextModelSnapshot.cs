@@ -22,6 +22,21 @@ namespace Tivix.BudgetPlanner.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("BudgetEntityBudgetUserEntity", b =>
+                {
+                    b.Property<Guid>("BudgetsId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UsersId")
+                        .HasColumnType("text");
+
+                    b.HasKey("BudgetsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("BudgetEntityBudgetUserEntity");
+                });
+
             modelBuilder.Entity("Tivix.BudgetPlanner.Application.Entities.BudgetEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -51,6 +66,31 @@ namespace Tivix.BudgetPlanner.Api.Migrations
                     b.HasIndex("LastUpdatedAtUtc");
 
                     b.ToTable("Budgets");
+                });
+
+            modelBuilder.Entity("Tivix.BudgetPlanner.Application.Entities.BudgetUserEntity", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BudgetUserEntity");
+                });
+
+            modelBuilder.Entity("BudgetEntityBudgetUserEntity", b =>
+                {
+                    b.HasOne("Tivix.BudgetPlanner.Application.Entities.BudgetEntity", null)
+                        .WithMany()
+                        .HasForeignKey("BudgetsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tivix.BudgetPlanner.Application.Entities.BudgetUserEntity", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
