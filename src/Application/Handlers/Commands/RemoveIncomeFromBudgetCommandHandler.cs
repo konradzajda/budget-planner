@@ -4,13 +4,11 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Tivix.BudgetPlanner.Application.Abstractions;
 using Tivix.BudgetPlanner.Application.Requests.Commands;
-using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Application.Handlers.Commands;
 

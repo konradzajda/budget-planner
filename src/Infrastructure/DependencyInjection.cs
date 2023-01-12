@@ -5,7 +5,6 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tivix.BudgetPlanner.Application.Abstractions;
-using Tivix.BudgetPlanner.Application.Handlers.Commands;
 using Tivix.BudgetPlanner.Infrastructure.Extensions;
 
 namespace Tivix.BudgetPlanner.Infrastructure;
