@@ -15,7 +15,7 @@ using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Application.Handlers.Commands;
 
-public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeCommand, IApplicationResponse<IEnumerable<BudgetIncomeViewModel>>>
+public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeCommand, IApplicationResponse<BudgetIncomeViewModel>>
 {
     private readonly IBudgetsContext _context;
     private readonly IUserContextAccessor _contextAccessor;
@@ -32,11 +32,11 @@ public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeComm
         _mapper = mapper;
     }
 
-    public async Task<IApplicationResponse<IEnumerable<BudgetIncomeViewModel>>> Handle(AddBudgetIncomeCommand request,
+    public async Task<IApplicationResponse<BudgetIncomeViewModel>> Handle(AddBudgetIncomeCommand request,
         CancellationToken cancellationToken)
     {
         if (request.BudgetId == Guid.Empty)
-            return ApplicationResponse.NotFound<IEnumerable<BudgetIncomeViewModel>>();
+            return ApplicationResponse.NotFound<BudgetIncomeViewModel>();
 
         var budget = await _context
             .Budgets
@@ -44,7 +44,7 @@ public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeComm
             .SingleOrDefaultAsync(y => y.Id == request.BudgetId, cancellationToken);
 
         if (budget == null)
-            return ApplicationResponse.NotFound<IEnumerable<BudgetIncomeViewModel>>();
+            return ApplicationResponse.NotFound<BudgetIncomeViewModel>();
 
         _guard.CanAddIncome(budget);
         
@@ -66,13 +66,13 @@ public class AddBudgetIncomeCommandHandler : IRequestHandler<AddBudgetIncomeComm
         catch (Exception e)
         {
             _logger.LogError(e, "An exception occurred while adding income to the budget");
-            return ApplicationResponse.FromError<IEnumerable<BudgetIncomeViewModel>>(
+            return ApplicationResponse.FromError<BudgetIncomeViewModel>(
                 ErrorMessages.InternalError,
                 HttpStatusCode.InternalServerError);
         }
 
-        var viewModels = budget.Incomes.Select(_mapper.Map<BudgetIncomeViewModel>);
+        var viewModel = _mapper.Map<BudgetIncomeViewModel>(income);
         
-        return ApplicationResponse.Success(viewModels);
+        return ApplicationResponse.Success(viewModel);
     }
 }

@@ -33,6 +33,8 @@ namespace Tivix.BudgetPlanner.Api
                     options.OAuthClientSecret(configuration.GetOAuthClientSecret());
                     options.OAuthUsePkce();
                 });
+
+            app.UseCors("CoolCorsPolicy");
             
             app.UseAuthentication();
             app.UseAuthorization();

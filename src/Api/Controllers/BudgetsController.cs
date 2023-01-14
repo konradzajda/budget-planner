@@ -74,7 +74,7 @@ public class BudgetsController : ControllerBase
 
     [HttpGet("{id:guid}/users")]
     [ActionName("get-budget-users")]
-    [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+    [ProducesResponseType(typeof(IEnumerable<UserViewModel>), 200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetBudgetUsersAsync([FromRoute] Guid id,
         CancellationToken cancellationToken = default)
@@ -116,7 +116,7 @@ public class BudgetsController : ControllerBase
     }
 
     [HttpPost("{id:guid}/users")]
-    [ProducesResponseType(typeof(IEnumerable<string>),201)]
+    [ProducesResponseType(typeof(IEnumerable<UserViewModel>),201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> AddUserAsync([FromRoute] Guid id, [FromBody] AddBudgetUserCommand command,
         CancellationToken cancellationToken = default)

@@ -16,19 +16,16 @@ namespace Tivix.BudgetPlanner.Application.Handlers.Commands;
 public class AddBudgetUserCommandHandler : IRequestHandler<AddBudgetUserCommand, IApplicationResponse<IEnumerable<string>>>
 {
     private readonly IBudgetsContext _context;
-    private readonly IUserContextAccessor _contextAccessor;
     private readonly IUsersFinder _finder;
     private readonly ILogger<AddBudgetUserCommandHandler> _logger;
     private readonly IBudgetGuard _guard;
 
     public AddBudgetUserCommandHandler(
         IBudgetsContext context,
-        IUserContextAccessor contextAccessor,
         IUsersFinder finder,
         ILogger<AddBudgetUserCommandHandler> logger, IBudgetGuard guard)
     {
         _context = context;
-        _contextAccessor = contextAccessor;
         _finder = finder;
         _logger = logger;
         _guard = guard;

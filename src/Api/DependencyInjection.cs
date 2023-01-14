@@ -13,6 +13,17 @@ public static class DependencyInjection
     {
         var firebaseProjectId = configuration.GetProjectId();
 
+        services.AddCors(y =>
+        {
+            y.AddPolicy("CoolCorsPolicy", p =>
+            {
+                p.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+        });
+
         services.AddFirebaseAuthentication(
             "https://securetoken.google.com/" + firebaseProjectId,
             firebaseProjectId);

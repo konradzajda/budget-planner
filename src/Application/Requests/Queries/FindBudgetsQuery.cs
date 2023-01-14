@@ -11,7 +11,6 @@ public class FindBudgetsQuery : IRequest<IApplicationResponse<IEnumerable<Budget
     public string Name { get; init; }
     
     public int Offset { get; init; }
- 
-    [JsonPropertyName("page_size")]
+    
     public int PageSize { get; init; }
 }
