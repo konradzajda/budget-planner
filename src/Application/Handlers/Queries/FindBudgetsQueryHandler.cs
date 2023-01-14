@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -18,7 +19,8 @@ public class FindBudgetsQueryHandler : IRequestHandler<FindBudgetsQuery, IApplic
     private readonly IMapper _mapper;
     private readonly IUserContextAccessor _contextAccessor;
 
-    public FindBudgetsQueryHandler(IBudgetsContext context, IMapper mapper, IUserContextAccessor contextAccessor)
+    public FindBudgetsQueryHandler(
+        IBudgetsContext context, IMapper mapper, IUserContextAccessor contextAccessor)
     {
         _context = context;
         _mapper = mapper;
@@ -34,6 +36,7 @@ public class FindBudgetsQueryHandler : IRequestHandler<FindBudgetsQuery, IApplic
             .Where(y => string.IsNullOrEmpty(request.Name) ||
                         y.Name.Equals(request.Name))
             .Where(y => y.Users.Any(u => u.Id == _contextAccessor.Id) || y.CreatedBy.Equals(_contextAccessor.Id))
+            .OrderByDescending(y => y.LastUpdatedAtUtc)
             .Skip(offset)
             .Take(pageSize)
             .ProjectTo<BudgetViewModel>(_mapper.ConfigurationProvider)

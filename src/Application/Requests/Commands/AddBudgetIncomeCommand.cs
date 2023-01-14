@@ -7,7 +7,7 @@ using Tivix.BudgetPlanner.Application.ViewModels;
 
 namespace Tivix.BudgetPlanner.Application.Requests.Commands;
 
-public class AddBudgetIncomeCommand : IRequest<IApplicationResponse<IEnumerable<BudgetIncomeViewModel>>>
+public class AddBudgetIncomeCommand : IRequest<IApplicationResponse<BudgetIncomeViewModel>>
 {
     [JsonIgnore]
     public Guid BudgetId { get; set; }
